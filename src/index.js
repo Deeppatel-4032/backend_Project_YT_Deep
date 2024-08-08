@@ -24,12 +24,6 @@ connectDB()
 })
 
 
-
-
-
-
-
-
 /*
 IFE function
 import express from "express"
