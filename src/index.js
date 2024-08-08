@@ -1,16 +1,27 @@
 // require('dotenv').config();
 import dotenv from "dotenv";
 import connectDB from "./db/indexDB.js";
+const PORT = process.env.PORT || 8000;
 
 dotenv.config({
     path: "./env"
 })
 
-connectDB();
-
-
-
-
+//export the indexDB file
+connectDB()
+//asncy code lakelo che atle tecnecal te promisice pan mokale 
+.then(() => {
+  app.on("error",(err) => {
+    console.log("server on erroe", err);
+    throw err
+  })
+  app.listen(PORT, () =>{
+    console.log(`server is runing at port : http://localhost:${PORT}`);
+  })
+})
+.catch((err) => {
+    console.log("mongodb connection fild Error.....!",err)
+})
 
 
 
@@ -39,4 +50,4 @@ import express from "express"
         console.log("Error",error)
         throw err
     }
-})()*/
+})()*/ 
