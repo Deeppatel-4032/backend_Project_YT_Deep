@@ -7,4 +7,4 @@ class API_Res {
     }
 }
 
-export {API_Res}
+export { API_Res }

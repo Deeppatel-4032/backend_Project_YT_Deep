@@ -17,12 +17,16 @@ import fs from "fs";
                 resource_type : "auto"
             });
             // file has been uploade successfull
-            console.log("file is uploade on cloudinary", response.url);
-            return response.url
+            // console.log("file is uploade on cloudinary", response.url);
+            fs.unlinkSync(localFilePath) //remove the locally saved temporary file
+            return response.url;
         } catch (error) {
+            console.log("file is uploade failed", error);
             fs.unlinkSync(localFilePath) //remove the locally saved temporary file is upload operation got failed
             return null;
             
         }
     }
     
+
+export { uploadOnCloudinary };
