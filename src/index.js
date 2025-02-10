@@ -1,22 +1,30 @@
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+import userRoutes from "./routes/user.routes.js";
 import connectDB from "./db/indexDB.js";
-import {app} from "./app.js"
 dotenv.config({
   path: "./.env"
 })
-
 const PORT = process.env.PORT || 8000;
+const app = express();
 
-//export the indexDB file
-connectDB()
+app.use(cors({
+  origin : process.env.CORS_ORIGIN,
+  credentials : true,    
+}));
 
-//asncy code lakelo che atle tecnecal te promisice pan mokale 
-.then(() => {
-  console.log("MongoDB connected successfully.....!!");
-  app.listen(PORT, () => {
-    console.log(`Server is running at port: http://localhost:${PORT}`);
-  });
-})
-.catch((err) => {
-  console.log("MongoDB connection failed.....!! :", err);
+app.use(express.json({limit : "15kb"}));
+app.use(express.urlencoded({extended : true, limit : "15kb"}));
+app.use(express.static("publice"));
+app.use(cookieParser());
+
+// routes declaration
+app.use("/api/v1/users", userRoutes);
+
+app.listen(PORT, (err) => {
+  if (!err) {
+    console.log(`Server is running at port: http://localhost:${PORT}/api/v1`);
+  }
 });

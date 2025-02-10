@@ -24,7 +24,6 @@ import fs from "fs";
             console.log("file is uploade failed", error);
             fs.unlinkSync(localFilePath) //remove the locally saved temporary file is upload operation got failed
             return null;
-            
         }
     }
     
